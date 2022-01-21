@@ -43,10 +43,10 @@ include 'koneksi.php';
         <!-- menu -->
         <ul class="nav flex-column">
         <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a><hr class="bg-dark">
+            <a class="nav-link text-white" aria-current="page" href="view.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a><hr class="bg-dark">
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="view.php"><i class="fas fa-users"></i> Calon Mahasiswa</a><hr class="bg-dark">
+            <a class="nav-link text-white" href="index.php"><i class="fas fa-users"></i> Calon Mahasiswa</a><hr class="bg-dark">
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" href="inputdata.php"><i class="fas fa-user-edit"></i> Input Camaba </a><hr class="bg-dark">

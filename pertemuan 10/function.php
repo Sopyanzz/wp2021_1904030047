@@ -25,6 +25,21 @@
     function tambah($data)
     {
           global $conn;
+              
+              $nama     = htmlspecialchars ($data['nama']);
+              $alamat   = htmlspecialchars($data['alamat']);
+              $jenis_kelamin    = htmlspecialchars($data['jenis_kelamin']);
+              $agama    = htmlspecialchars($data['agama']);
+              $sekolah  = htmlspecialchars($data['sekolah']);
+              $foto     = htmlspecialchars($data['foto']);
+
+        $query = "INSERT INTO calon_mhs 
+                 VALUES
+              (null,'$nama','$alamat','$jenis_kelamin','$agama','$sekolah','$foto');";
+
+                mysqli_query($conn,$query);
+                echo mysqli_error($conn);
+                return mysqli_affected_rows($conn);
 
           
     }

@@ -1,12 +1,25 @@
 <?php
 require 'function.php';
-//agar tidak bisa masuk ke pengetikan manual pada url
-    if(!isset($_GET['id'])){
-        header('location: index.php');
-        exit;
-    }
-$id = $_GET['id'];
-$camaba = query("SELECT * FROM calon_mhs WHERE id = $id");
+
+if(isset($_POST['submit'])){
+  if (tambah($_POST) > 0){
+    echo "
+            <script>
+            alert('data berhasil diinput..!');
+            document.location.href= 'index.php'
+            </script>
+            ";
+  } else{
+    echo "
+            <script>
+            alert('data gagal diinput..!');
+            </script>
+            ";
+  }
+}
+
+// $id = $_GET['id'];
+// $camaba = query("SELECT * FROM calon_mhs WHERE id = $id");
 ?>
 
 <!doctype html>
@@ -70,19 +83,46 @@ $camaba = query("SELECT * FROM calon_mhs WHERE id = $id");
         <!-- konten -->
         <h3><i class="fas fa-users"></i>Detail data Calon Mahasiswa</h3>
         <hr>
-        <ul class="list-group">
-            <li class="list-group-item active" ><?= $camaba['nama']; ?></li>
-            <li class="list-group-item"><?= $camaba['alamat']; ?></li>
-            <li class="list-group-item"><?= $camaba['jenis_kelamin']; ?></li>
-            <li class="list-group-item"><?= $camaba['agama']; ?></li>
-            <li class="list-group-item"><?= $camaba['sekolah_asal']; ?></li>
-            <li class="list-group-item"><img src="images/<?= $camaba['foto']; ?>.png" width="400px"></li>
-            <li class="list-group-item">
-                <a href="edit.php?id=<?= $camaba['id']; ?>" class="btn btn-warning" role="button">Edit</a>
-                <a href="hapus.php?id=<?= $camaba['id']; ?>"class="btn btn-danger" role="button">Hapus</a>
-                <a href="index.php" class="btn btn-primary" role="button">Kembali</a></li>
-        </ul>
-
+        <form method="POST" action="">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="nama" name="nama" autofocus required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <textarea class="form-control" id="alamat" name="alamat" rows="4" required autocomplete="off"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis_kelamin">jenis kelamin</label>
+                        <select class="form-select" aria-label="jenis_kelamin" id="jenis_kelamin" name="jenis_kelamin" required autocomplete="off">
+                        <option selected>Pilih salah satu</option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="agama">Agama</label>
+                        <select class="form-select" aria-label="agama" id="agama" name="agama" required autocomplete="off">
+                        <option selected>Pilih salah satu</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Protestan">Protestan</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Buddha">Buddha</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sekolah">Sekolah Asal</label>
+                        <input type="text" class="form-control" id="sekolah" name="sekolah" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="foto">Foto</label>
+                        <input type="text" class="form-control" id="foto" name="foto" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" name="submit">Input Data</button>
+            </form>
+       
             
         </div>
     </div>
